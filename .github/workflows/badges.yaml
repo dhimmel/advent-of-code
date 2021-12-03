@@ -1,0 +1,26 @@
+name: Update AoC Badges
+on:
+  schedule:
+    # from the December 1-25 at 9:06am (avoid load at full hours)
+    - cron: '6 9 1-25 12 *'
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: joblo2213/aoc-badges-action@v3
+        with:
+          userid: 1569450
+          session: ${{ secrets.AOC_SESSION }}
+          # The year for which stats should be retrieved
+          year: 2021
+          # The url of the leaderboard from which the data is fetched. Typically your private leaderboard.
+#         leaderboard: 'https://adventofcode.com/2020/leaderboard/private/view/00000.json'
+#         dayRegex: '(?<=https:\/\/img\.shields\.io\/badge\/day%20📅-)[0-9]+(?=-blue)'                   # Regular expression that finds the content of the day badge in your file.
+#         starsRegex: '(?<=https:\/\/img\.shields\.io\/badge\/stars%20⭐-)[0-9]+(?=-yellow)'             # Regular expression that finds the content of the stars badge in your file.
+#         daysCompletedRegex: '(?<=https:\/\/img\.shields\.io\/badge\/days%20completed-)[0-9]+(?=-red)'  # Regular expression that finds the content of the days completed badge iun your file.
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update badges
+          file_pattern: README.md
