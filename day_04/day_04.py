@@ -28,8 +28,8 @@ def bingo_score(draws: list[int], board: pd.DataFrame, i: int) -> Optional[int]:
     bingo = hits.all(axis=0).any() or hits.all(axis=1).any()
     if not bingo:
         return None
-    # summing the whole dataframe ignored the hits mask
-    return int(board[~hits].sum().sum()) * calls[i]
+    # summing the masked `board[~hits]` dataframe ignored the hits mask
+    return sum(board * (~hits).astype(int))
 
 
 def get_winning_scores(test=True) -> Iterator[int]:
