@@ -39,6 +39,7 @@ def part_2(move_df) -> int:
             aim += move.amount
     return position * depth
 
+
 # test data
 test_moves = read_input("test_input.txt")
 assert part_1(test_moves) == 150
