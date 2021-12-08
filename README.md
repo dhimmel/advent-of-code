@@ -1,10 +1,10 @@
 # Advent Of Code 2021
 
-![day badge](https://img.shields.io/badge/day%20📅-7-blue?style=for-the-badge)
+![day badge](https://img.shields.io/badge/day%20📅-8-blue?style=for-the-badge)
 
 ![completed badge](https://img.shields.io/badge/days%20completed-7-red?style=for-the-badge)
 
-![star badge](https://img.shields.io/badge/stars%20⭐-14-yellow?style=for-the-badge)
+![star badge](https://img.shields.io/badge/stars%20⭐-15-yellow?style=for-the-badge)
 
 <https://adventofcode.com/2021>
 
