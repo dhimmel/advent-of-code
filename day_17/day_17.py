@@ -47,15 +47,15 @@ def get_highest_y(velocity_x: int, velocity_y: int, test=True):
 @cache
 def grid_search(test=True):
     x_min, x_max, y_min, y_max = get_input(test=test)
-    grid = [
-        [get_highest_y(x, y, test=test) for y in range(y_min - 1, 1000)]
-        for x in range(x_max + 1)
-    ]
+    x_search = list(range(x_max + 1))
+    y_search = list(range(y_min - 1, 750))
+    grid = [[get_highest_y(x, y, test=test) for y in y_search] for x in x_search]
     grid = np.array(grid, dtype=np.float64)
+    best_x_index, best_y_index = np.unravel_index(np.nanargmax(grid), grid.shape)
     return dict(
         max_height=int(np.nanmax(grid)),
-        # this is faulty because index doesn't start at zero
-        # best_index = np.unravel_index(np.nanargmax(grid), grid.shape),
+        best_x=x_search[best_x_index],
+        best_y=y_search[best_y_index],
         n_hits=np.count_nonzero(~np.isnan(grid)),
     )
 
@@ -63,10 +63,12 @@ def grid_search(test=True):
 # tests
 assert get_highest_y(6, 9, test=True) == 45
 assert grid_search(test=True)["max_height"] == 45
+assert grid_search(test=True)["best_x"] == 6
+assert grid_search(test=True)["best_y"] == 9
 assert grid_search(test=True)["n_hits"] == 112
 
 print(
-    "Max reacheable height {max_height}. Total velocities that hit {n_hits}".format(
+    "Max reacheable height {max_height} via velocity x={best_x}, y={best_y}. Total velocities that hit {n_hits}".format(
         **grid_search(test=False)
     )
 )
