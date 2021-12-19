@@ -1,6 +1,6 @@
 # Advent Of Code 2021
 
-![day badge](https://img.shields.io/badge/day%20📅-18-blue?style=for-the-badge)
+![day badge](https://img.shields.io/badge/day%20📅-19-blue?style=for-the-badge)
 
 ![completed badge](https://img.shields.io/badge/days%20completed-15-red?style=for-the-badge)
 
